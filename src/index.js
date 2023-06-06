@@ -78,12 +78,12 @@ entryPoint.appendChild(dogCard)})
 //    * IN ANY CASE: log "done" to the console
 
 
-function getDogs(count){
+function getDogs(breed, count){
 
-  axios.get(`https://dog.ceo/api/breeds/image/random/${count}`)
+  axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${count}`)
   .then(res => { 
   res.data.message.forEach(imageURL => {
-      const dogCard = dogCardMaker({imageURL: imageURL, breed: "Casey"});
+      const dogCard = dogCardMaker({imageURL: imageURL, breed: breed});
       entryPoint.appendChild(dogCard)})
   
   })
@@ -93,8 +93,10 @@ function getDogs(count){
 
 }
 
-getDogs(5);
-
+document.querySelector('button').addEventListener('click', () => {
+  getDogs('mastiff', 3);
+  getDogs('appenzeller', 3); 
+})
 
 
 
